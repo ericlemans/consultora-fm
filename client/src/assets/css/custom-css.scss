@@ -1,0 +1,142 @@
+@import "mixins";
+
+body {
+  h1, h2, h3 {
+    margin-bottom: 2rem;
+  }
+}
+
+.shadow-standard {
+  box-shadow: -7px 10px 23px -12px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: -7px 10px 23px -12px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -7px 10px 23px -12px rgba(0, 0, 0, 0.75);
+}
+
+
+.site-logo img {
+  height: 40px
+}
+
+
+#hero {
+  .overlay-hero {
+    background: linear-gradient(45deg, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.75) 100%);
+    height: calc(100vh - 118px);
+    width: 100%;
+    //background: -moz-linear-gradient(135deg, hsla(0, 0%, 0%, 1) 0%, hsla(0, 0%, 19%, 1) 100%);
+    //background: -webkit-linear-gradient(135deg, hsla(0, 0%, 0%, 1) 0%, hsla(0, 0%, 19%, 1) 100%);
+  }
+
+  .bg-image-hero-container {
+    height: calc(100vh - 118px);
+    background-image: url("https://admin.consultora-fm.com.ar/assets/daf8db53-3b6e-4703-9006-4bc353f78c04?height=1000&format=webp");
+    background-size: cover;
+    background-position: center;
+  }
+
+  .search-bar {
+    padding-bottom: 10px !important;
+    background: #ffffffa3 !important;
+    border-radius: 6px;
+  }
+
+  .hero-title {
+    height: 120px;
+    @media (max-width: 590px) {
+      height: 85px
+    }
+
+    img {
+      height: 100%
+    }
+  }
+}
+
+#shop-grid {
+  #product-card {
+    .product-card-info {
+      padding: 20px 20px 1px;
+
+      .product-badge {
+        margin-bottom: 5px;
+
+        li {
+          background-color: var(--ltn__secondary-color);;
+          padding: 1px 10px;
+          margin-bottom: 5px;
+          color: #fff;
+          border-radius: 20px;
+          font-size: 12px;
+          @include box-shaodow-standard()
+        }
+      }
+
+      .product-title {
+        font-size: 18px;
+        display: -webkit-box;
+        max-width: 400px;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+
+    .img-container {
+      height: 220px;
+      display: flex;
+      align-items: center; /* vertical */
+      justify-content: center; /* horizontal */
+      img {
+        height: 280px;
+        width: 100%;
+      }
+    }
+  }
+
+  .ltn__shop-options {
+    margin-bottom: 20px;
+    text-align: end;
+  }
+}
+
+#property-details {
+  .property-details-amenities {
+
+    -moz-column-count: 3;
+    -webkit-column-count: 3;
+    column-count: 3;
+
+    @media (min-width: 991px) {
+      ul {
+        height: 100px;
+
+        li {
+          float: left;
+          width: 50px;
+        }
+      }
+
+    }
+
+    @media (min-width: 780px) {
+      -moz-column-count: 3;
+      -webkit-column-count: 3;
+      column-count: 3;
+    }
+  }
+}
+
+.map-circle {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgba(255, 90, 60, 0.49);
+  border: 2px solid #ff5a3c;
+}
+
+.local-bootstrap {
+  @import "bootstrap-4.4.1-dist/css/bootstrap.min.css";
+}

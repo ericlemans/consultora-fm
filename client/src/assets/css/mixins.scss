@@ -1,0 +1,11 @@
+@mixin center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin box-shaodow-standard {
+  box-shadow: -2px 7px 8px -8px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: -2px 7px 8px -8px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: -2px 7px 8px -8px rgba(0, 0, 0, 0.5);
+}
