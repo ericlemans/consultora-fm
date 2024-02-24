@@ -1,7 +1,0 @@
-@import "mixins";
-
-#hero {
-  .overlay-hero {
-    @include fullScreen();
-  }
-}
