@@ -38,8 +38,7 @@ const ShopGridV1 = () => {
                 console.log(error.response)
                 setLoading(false);
             })
-    }, []);
-
+    }, [search]);
 
     const [properties, setProperties] = useState([]);
 
@@ -61,7 +60,7 @@ const ShopGridV1 = () => {
                     <div className="product-badge">
                         <ul>
                             <li className="sale-badge">
-                                {data.fk_tag.name}
+                                {data.fk_tag?.name}
                             </li>
                         </ul>
                     </div>
@@ -96,7 +95,7 @@ const ShopGridV1 = () => {
                     <div className="product-price">
                                 <span>
                                     U$D {data.price.toLocaleString("es-AR")}
-                                    {data.fk_tag.id === 2 && <label> /mes</label>}
+                                    {data.fk_tag?.id === 2 && <label> /mes</label>}
                                 </span>
                     </div>
                 </div>
@@ -128,10 +127,11 @@ const ShopGridV1 = () => {
                                     {/*    </div>*/}
                                     {/*</li>*/}
                                     <li>
-                                        <div className="showing-product-number text-right">
-                                            {properties.length &&
-                                                <span>Mostrando {properties?.length} {properties?.length > 1 ? "avisos" : "aviso"}</span>}
-                                        </div>
+                                        {properties.length > 0 && (
+                                            <div className="showing-product-number text-right">
+                                                <span>Mostrando {properties?.length} {properties?.length > 1 ? "avisos" : "aviso"}</span>
+                                            </div>
+                                        )}
                                     </li>
                                 </ul>
                             </div>
@@ -141,15 +141,17 @@ const ShopGridV1 = () => {
                                         <div id="product-card">
                                             {/* ltn__product-item */}
                                             <div className="row">
-
                                                 {
-                                                    !loading ? (
-                                                        properties.length && properties.map((item, index) => (
-                                                            <div key={item.id} className="col-lg-4 col-sm-6 col-12">
-                                                                {renderProductItem(item, index)}
-                                                            </div>
-                                                        ))) : (
-                                                        <div className="justify-content-center d-flex my-5">
+                                                    !loading
+                                                        ? (
+                                                            properties.length > 0
+                                                                ? (properties.map((item, index) => (
+                                                                    <div key={item.id} className="col-lg-4 col-sm-6 col-12">
+                                                                        {renderProductItem(item, index)}
+                                                                    </div>)))
+                                                                : (<span>No se encontraron resultados</span>)
+                                                        )
+                                                        : (<div className="justify-content-center d-flex my-5">
                                                             <ThreeDots height="80"
                                                                        width="80"
                                                                        color="red"

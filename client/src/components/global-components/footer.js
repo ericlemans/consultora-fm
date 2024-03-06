@@ -155,7 +155,7 @@ const Footer_v1 = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="col-lg-4 col-md-6 col-12">
+                        <div className="col-lg-4 col-md-6 col-12 mt-5 mt-md-0">
                             <div className="footer-widget footer-newsletter-widget">
                                 <h4 className="footer-title">Newsletter</h4>
                                 <p>Suscribite a nuestro newsletter y recibí las últimas novedades por email.</p>

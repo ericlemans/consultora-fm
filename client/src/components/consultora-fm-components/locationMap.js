@@ -24,7 +24,7 @@ const LocationMap = ({details}) => {
     if(coordinates) {
         return (
             <div id="map">
-                <h4 className="title-2">Location</h4>
+                <h4 className="title-2">Ubicación</h4>
                 <div className="property-details-google-map mb-60">
                     {/*{renderGoogleMAps()}*/}
                     <div className="h-100 w-100">

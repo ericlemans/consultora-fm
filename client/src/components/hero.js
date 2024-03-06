@@ -101,7 +101,6 @@ const Hero = () => {
                                             <option value={"null"}>Publicación...</option>
                                             <option value={"venta"}>Venta</option>
                                             <option value={"alquiler"}>Alquiler</option>
-                                            <option value={"temporario"}>Temporario</option>
                                         </select>
                                     </div>
 

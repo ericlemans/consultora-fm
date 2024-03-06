@@ -5,12 +5,20 @@ import CallToActionV1 from './section-components/call-to-action-v1';
 import Footer from './global-components/footer';
 import axios from "axios";
 import {useParams} from "react-router-dom";
+import {Helmet} from "react-helmet";
 
 const Product_Details = () => {
 
     const [propertyDetails, setPropertyDetails] = useState({});
 
     const params = useParams();
+
+
+    const metatTitle = `FM Consultora | ${propertyDetails?.title}`;
+    const metaDescription = propertyDetails?.description?.replace(/<[^>]*>?/gm, '');
+    const metaImage = propertyDetails?.images?.length > 0 && `${process.env.REACT_APP_SERVER_URL}/assets/${propertyDetails.images[0].directus_files_id.id}?height=400&format=webp&quality=75`
+    const metaURL = window.location.href;
+
 
     // GET PROPERTY DETAILS
     useEffect(() => {
@@ -27,6 +35,33 @@ const Product_Details = () => {
 
     if (propertyDetails.id) {
         return <div id="property-details">
+            <Helmet>
+                <meta name="title" content={metatTitle}/>
+                <meta name="description" content={metaDescription}/>
+
+                {/*Metadatos para redes sociales (opcional, pero recomendado)*/}
+                <meta property="og:title"
+                      content={metatTitle}/>
+                <meta property="og:description"
+                      content={metaDescription}/>
+                <meta property="og:image"
+                      content={metaImage}/>
+                <meta property="og:url" content={metaURL}/>
+
+                {/*Metadatos de Twitter (opcional)*/}
+                <meta name="twitter:card"
+                      content={metaImage}/>
+                <meta name="twitter:title"
+                      content={metatTitle}/>
+                <meta name="twitter:description"
+                      content={metaDescription}/>
+                <meta name="twitter:image"
+                      content={metaImage}/>
+
+
+            </Helmet>
+
+
             <ProductSlider images={propertyDetails.images}/>
             <ProductDetails details={propertyDetails} />
             <CallToActionV1/>

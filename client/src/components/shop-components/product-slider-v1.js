@@ -1,5 +1,4 @@
-import React from 'react';
-import {imageSliderPreset, imageSliderPresetLightBox} from "../../variables";
+import React, {useEffect, useState} from 'react';
 import Slider from "react-slick";
 import {ChevronLeft, ChevronRight} from "@mui/icons-material";
 import "yet-another-react-lightbox/styles.css";
@@ -9,19 +8,21 @@ import {Thumbnails, Zoom} from "yet-another-react-lightbox/plugins";
 
 const ProductSliderV1 = ({images}) => {
 
-    // const settings = {
-    //     className: "center",
-    //     dots: true,
-    //     centerMode: true,
-    //     infinite: true,
-    //     centerPadding: "450px",
-    //     slidesToShow: 1,
-    //     // slidesToScroll: 1,
-    //     lazyLoad: true
-    // };
+    const [windowSize, setWindowSize] = useState({
+        width: 1200,
+        height: 800
+    });
 
     const [open, setOpen] = React.useState(false);
     const [index, setIndex] = React.useState(false);
+
+    useEffect(() => {
+        setWindowSize({width: window.innerWidth, height: window.innerHeight});
+        window.addEventListener("resize", () => {
+            setWindowSize({width: window.innerWidth, height: window.innerHeight});
+        });
+    }, []);
+
 
     const SlickArrowLeft = ({currentSlide, slideCount, ...props}) => (
         <button
@@ -50,15 +51,14 @@ const ProductSliderV1 = ({images}) => {
             <ChevronRight/>
         </button>
     );
+
     const settings = {
-        centerMode: true,
         infinite: true,
-        centerPadding: "450px",
-        slidesToShow: 1,
+        centerMode: true,
         focusOnSelect: true,
         dots: true,
-        speed: 500,
-        swipe: false,
+        swipe: true,
+        slidesToShow: 5,
         afterChange: (index) => {
             setIndex(index)
         },
@@ -66,44 +66,21 @@ const ProductSliderV1 = ({images}) => {
         nextArrow: <SlickArrowRight/>,
         responsive: [
             {
+                breakpoint: 580,
+                settings: {
+                    slidesToShow: 1,
+                },
+            },
+            {
+                breakpoint: 780,
+                settings: {
+                    slidesToShow: 1
+                },
+            },
+            {
                 breakpoint: 1600,
                 settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                    centerPadding: "250px",
-                },
-            },
-            {
-                breakpoint: 992,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                    centerPadding: "250px",
-                },
-            },
-            {
-                breakpoint: 992,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                    centerPadding: "200px",
-                },
-            },
-            {
-                breakpoint: 768,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                    centerPadding: "150px",
-                },
-            },
-            {
-                breakpoint: 767,
-                settings: {
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                    centerPadding: "0px",
-                    dots: true,
+                    slidesToShow: 3
                 },
             },
         ],
@@ -113,7 +90,7 @@ const ProductSliderV1 = ({images}) => {
         images.forEach(item => {
             parsedImgArray.push(
                 {
-                    src: `${process.env.REACT_APP_SERVER_URL}/assets/${item.directus_files_id.id}?${imageSliderPreset}`,
+                    src: `${process.env.REACT_APP_SERVER_URL}/assets/${item.directus_files_id.id}?fit=cover&height=${windowSize.height}&format=webp&quality=75`,
                     alt: item.directus_files_id.description,
                     width: 1904,
                     height: 1006,
@@ -128,13 +105,14 @@ const ProductSliderV1 = ({images}) => {
             <div className="ltn__img-slider-area mb-50">
                 <div className="container-fluid">
                     <Slider {...settings}
-                            className="row ltn__image-slider-5-active slick-arrow-1 slick-arrow-1-inner ltn__no-gutter-all">
-                        {images.map((image, index) => (
-                            <div key={image.id} className="col-lg-12">
-                                <div className="ltn__img-slide-item-4 mx-2 mb-3">
+                            className="row ltn__image-slider-5-active slick-arrow-1 slick-arrow-1-inner ltn__no-gutter-all"
+                    >
+                        {images.map((image) => (
+                            <div key={image.id}>
+                                <div className="ltn__img-slide-item-4 mx-3 mb-3">
                                     <a onClick={() => setOpen(true)}>
                                         <img
-                                            src={`${process.env.REACT_APP_SERVER_URL}/assets/${image.directus_files_id.id}?${imageSliderPreset}`}
+                                            src={`${process.env.REACT_APP_SERVER_URL}/assets/${image.directus_files_id.id}?fit=cover&height=600&width=800&format=webp&quality=75`}
                                             alt={image.directus_files_id.description}/>
                                     </a>
                                 </div>
@@ -150,7 +128,7 @@ const ProductSliderV1 = ({images}) => {
                 slides={parseImages()}
                 plugins={[Thumbnails, Zoom]}
                 index={index}
-                on={{ view: ({ index: currentIndex }) => setIndex(currentIndex) }}
+                on={{view: ({index: currentIndex}) => setIndex(currentIndex)}}
             />
         </>
 

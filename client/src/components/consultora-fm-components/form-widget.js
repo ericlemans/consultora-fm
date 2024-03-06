@@ -9,6 +9,7 @@ const FromWidget = ({details, category, callback}) => {
         axios.post(`${process.env.REACT_APP_SERVER_URL}/items/messages`, {
             name: data.Name,
             email: data.Email,
+            tel: data.Tel,
             message: data.Message,
             fk_agent: details?.fk_agent.id,
             category,
@@ -21,6 +22,7 @@ const FromWidget = ({details, category, callback}) => {
                 reset({
                     Name: "",
                     Email: "",
+                    Tel: "",
                     Message: ""
                 });
                 toast.success("Mensaje enviado exitósamente.");
@@ -52,6 +54,14 @@ const FromWidget = ({details, category, callback}) => {
                     {...register("Email", {
                         required: {value: true, message: "Campo obligatorio."},
                         pattern: {value: /^\S+@\S+$/i, message: "Introducí un email válido."}
+                    })}
+                />
+                <p style={{marginTop: -25}} className="error ltn__secondary-color">{errors.Email?.message}</p>
+                <input
+                    type="text"
+                    placeholder="Tu teléfono"
+                    {...register("Tel", {
+                        pattern: {value: /^(?:(?:00)?549?)?0?(?:11|[2368]\d)(?:(?=\d{0,2}15)\d{2})??\d{8}$/, message: "Introducí un teléfono válido."}
                     })}
                 />
                 <p style={{marginTop: -25}} className="error ltn__secondary-color">{errors.Email?.message}</p>

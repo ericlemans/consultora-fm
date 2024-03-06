@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
-import parse from 'html-react-parser';
 
 class AboutV3 extends Component {
 
@@ -24,10 +22,10 @@ class AboutV3 extends Component {
                                     Sobre nosotros
                                 </h6>
                                 <h1 className="section-title">
-                                    Trayectoria, confianza y profesionalidad
+                                    Trayectoria, confianza y profesionalismo
                                 </h1>
                                 <p>
-                                    Nuestra profesionalidad y seriedad han establecido un sólido vínculo de confianza con nuestros clientes.
+                                    Nuestro profesionalismo y seriedad han establecido un sólido vínculo de confianza con nuestros clientes.
                                     Apostamos cada día a nuevos desafíos elevando la bara en la calidad de nuestra atención, para que encontrar tu nuevo hogar sea una experiencia comfortable.
                                 </p>
                             </div>

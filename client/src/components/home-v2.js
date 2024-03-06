@@ -9,7 +9,6 @@ import TitlesHeader from "./consultora-fm-components/titles-header";
 import TestimonialV1 from "./section-components/testimonial-v1";
 
 const Home_V2 = () => {
-
     return (
         <div>
             {/*<Banner/>*/}

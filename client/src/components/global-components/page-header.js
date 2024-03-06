@@ -13,12 +13,12 @@ class Page_header extends Component {
 
 		return (
 
-		<div className={"ltn__breadcrumb-area text-left bg-overlay-white-30 bg-image "+CustomClass} data-bs-bg={publicUrl+"assets/img/bg/14.jpg"}>
+		<div className={"ltn__breadcrumb-area mb-0 py-4 text-left bg-overlay-white-30 bg-image "+CustomClass} data-bs-bg={publicUrl+"assets/img/bg/14.jpg"}>
 			<div className="container">
 				<div className="row">
 				<div className="col-lg-12">
 					<div className="ltn__breadcrumb-inner">
-					<h1 className="page-title">{ HeaderTitle }</h1>
+					<h1 className="page-title mb-1">{ HeaderTitle }</h1>
 					<div className="ltn__breadcrumb-list">
 						<ul>
 						<li><Link to="/"><span className="ltn__secondary-color"><i className="fas fa-home" /></span> Home</Link></li>

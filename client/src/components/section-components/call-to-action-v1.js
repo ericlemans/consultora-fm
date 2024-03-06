@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {Link} from 'react-router-dom';
 import {Box, Modal} from "@mui/material";
 import FormWidget from "../consultora-fm-components/form-widget";
@@ -6,11 +6,11 @@ import FormWidget from "../consultora-fm-components/form-widget";
 const CallToActonV1 = () => {
 
     const [modalOpen, setModalOpen] = useState(false);
-
+    const tasacionesRef = useRef(null)
     const handleCallback = () => setModalOpen(false)
 
     return (
-        <>
+        <div id="tasaciones" ref={tasacionesRef}>
             <div className="ltn__call-to-action-area call-to-action-6 before-bg-bottom">
                 <div className="container">
                     <div className="row">
@@ -44,7 +44,7 @@ const CallToActonV1 = () => {
                     </div>
                 </div>
             </Modal>
-        </>
+        </div>
 
     )
 };
