@@ -17,7 +17,7 @@ class Location extends Component {
 
         const mapscript = document.createElement("script");
         mapscript.async = true;
-        mapscript.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCeeHDCOXmUMja1CFg96RbtyKgx381yoBU';
+        mapscript.src = process.env.REACT_APP_MAP_API;
 
         document.body.appendChild(mapscript);
 
